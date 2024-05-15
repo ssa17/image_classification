@@ -1,0 +1,49 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#video_container {
+    text-align: center;
+}
+
+canvas {
+    display: block;
+    margin: 0 auto;
+    border: none; /* Remove border */
+}
+
+.result-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensure the label is on the left and the progress bar on the right */
+    margin-top: 10px;
+    width: 100%; /* Take full width of the parent container */
+}
+
+.label {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: black;
+}
+
+.progress-bar-container {
+    width: 320px; /* Set the width to half of the canvas width */
+    background-color: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0;
+    height: 20px;
+    background-color: green;
+    color: white;
+    text-align: center;
+    line-height: 20px; /* Align text vertically */
+    transition: width 0.5s ease; /* Smooth the bar */
+    border-radius: 10px 0 0 10px;
+}
