@@ -3,6 +3,7 @@
 var imageModelURLs = [
   'https://teachablemachine.withgoogle.com/models/6IhU7aB45/',
   'https://teachablemachine.withgoogle.com/models/-evzaGiE7/',
+  'https://teachablemachine.withgoogle.com/models/0nSCSlslv/'
   // Add more model URLs if needed
 ];
 
