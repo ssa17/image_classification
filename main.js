@@ -17,12 +17,8 @@ function handleImageUpload(event) {
     const imgElement = document.createElement('img');
     imgElement.src = e.target.result;
     imgElement.id = "uploadedImage";
-    imgElement.style.maxWidth = "500px";
-    imgElement.style.maxHeight = "500px";
-
-    const previewContainer = document.getElementById('preview');
-    previewContainer.innerHTML = ''; // Clear previous images
-    previewContainer.appendChild(imgElement);
+    imgElement.style.maxWidth = "100px"; // Adjust size for table preview
+    imgElement.style.maxHeight = "100px";
 
     runImageModels(imgElement);
   };
@@ -33,10 +29,11 @@ function runImageModels(imgElement) {
   const resultsTableBody = document.querySelector('#resultsTable tbody');
   resultsTableBody.innerHTML = ''; // Clear previous results
 
-  const classifiers = [];
   const promises = imageModelURLs.map(url => ml5.imageClassifier(url));
 
   Promise.all(promises).then(classifiers => {
+    let descriptions = [];
+
     classifiers.forEach((classifier, index) => {
       classifier.classify(imgElement, (error, results) => {
         if (error) {
@@ -45,11 +42,29 @@ function runImageModels(imgElement) {
         }
         const { label, confidence } = results[0];
         const confidencePercentage = (confidence * 100).toFixed(2);
+        let description;
 
-        const row = resultsTableBody.insertRow();
-        row.insertCell(0).textContent = `Model ${index + 1}`;
-        row.insertCell(1).textContent = label;
-        row.insertCell(2).textContent = `${confidencePercentage}%`;
+        if (index === 1) { // Special case for Model 2: Glasses detection
+          description = `is ${label.includes('glasses') ? 'wearing glasses' : 'not wearing glasses'} (${confidencePercentage}%)`;
+        } else {
+          if (confidence >= 0.8) {
+            description = `is ${label} (${confidencePercentage}%)`;
+          } else if (confidence >= 0.6) {
+            description = `is likely ${label} (${confidencePercentage}%)`;
+          } else {
+            description = `could be ${label} (${confidencePercentage}%)`;
+          }
+        }
+
+        descriptions.push(description);
+
+        if (descriptions.length === classifiers.length) {
+          const row = resultsTableBody.insertRow();
+          const imageCell = row.insertCell(0);
+          imageCell.appendChild(imgElement.cloneNode(true));
+          const descriptionCell = row.insertCell(1);
+          descriptionCell.innerHTML = descriptions.join('<br>'); // Use <br> for new lines
+        }
       });
     });
   }).catch(error => {
