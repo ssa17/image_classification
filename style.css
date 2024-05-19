@@ -1,49 +1,109 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
-}
-
-#video_container {
-    text-align: center;
-}
-
-canvas {
-    display: block;
-    margin: 0 auto;
-    border: none; /* Remove border */
-}
-
-.result-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Ensure the label is on the left and the progress bar on the right */
-    margin-top: 10px;
-    width: 100%; /* Take full width of the parent container */
-}
-
-.label {
     font-family: Arial, sans-serif;
-    font-size: 18px;
-    color: black;
-}
-
-.progress-bar-container {
-    width: 320px; /* Set the width to half of the canvas width */
-    background-color: #ddd;
-    border-radius: 10px;
+  }
+  
+  nav {
+    width: 100%;
+    background-color: #333;
     overflow: hidden;
-}
-
-.progress-bar {
-    width: 0;
-    height: 20px;
-    background-color: green;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  nav ul li {
+    float: left;
+  }
+  
+  nav ul li a {
+    display: block;
     color: white;
     text-align: center;
-    line-height: 20px; /* Align text vertically */
-    transition: width 0.5s ease; /* Smooth the bar */
-    border-radius: 10px 0 0 10px;
-}
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  nav ul li a:hover {
+    background-color: #111;
+  }
+  
+  #video_container {
+    padding-top: 60px; /* Ensure the content is below the navbar */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    height: calc(100vh - 60px); /* Full height minus the navbar */
+  }
+  
+  canvas {
+    border: 1px solid #ccc;
+  }
+  
+  #results {
+    width: 100%;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+  }
+  
+  .result-container {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  .label {
+    font-weight: bold;
+  }
+  
+  .progress-bar-container {
+    width: 100%;
+    background-color: #f3f3f3;
+  }
+  
+  .progress-bar {
+    width: 0%;
+    height: 20px;
+    background-color: #4caf50;
+    text-align: center;
+    color: white;
+  }
+  
+  #upload_container {
+    padding-top: 60px; /* Ensure the content is below the navbar */
+    text-align: center;
+  }
+  
+  #preview img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  table {
+    margin-top: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+  }
+  
+  table, th, td {
+    border: 1px solid black;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: center;
+  }
+  
