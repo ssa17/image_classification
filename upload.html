@@ -5,15 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Upload Image for Recognition</title>
   <link rel="stylesheet" href="style.css"/>
-  <script src="services.js"></script>
 </head>
 <body>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="upload.html">Upload Image</a></li>
-    </ul>
-  </nav>
   <div id="upload_container">
     <input type="file" id="imageUpload" accept="image/*">
     <div id="preview"></div>
@@ -28,6 +21,7 @@
       <tbody></tbody>
     </table>
   </div>
-  <script src="upload.js"></script>
+  <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
